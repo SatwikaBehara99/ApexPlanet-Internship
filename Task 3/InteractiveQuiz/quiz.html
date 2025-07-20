@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Quiz</title>
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<body class="light-mode">
+  <div class="theme-toggle">
+    <button id="themeBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+  </div>
+
+  <!-- Main Page Title -->
+  <h1 class="page-title">🧠 Web Development Quiz</h1>
+
+  <div class="quiz-container">
+    <div id="question-number"></div>
+    <div class="question" id="question">Loading...</div>
+    <div class="options" id="options"></div>
+    <div class="result" id="result"></div>
+    <div class="score" id="score"></div>
+    <button id="nextBtn" onclick="nextQuestion()">Next</button>
+    <button id="restartBtn" onclick="restartQuiz()">Restart Quiz</button>
+  </div>
+
+  <script src="script1.js"></script>
+</body>
+</html>
