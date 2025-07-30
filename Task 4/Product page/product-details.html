@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Details - SmartStore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🛒 SmartStore</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main class="product-details-container">
+    <div id="productDetail" class="product-detail-card"></div>
+  </main>
+
+  <script>
+    // Retrieve product info from URL
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+
+    const product = products[productId];
+
+    const detailContainer = document.getElementById("productDetail");
+
+    if (product) {
+      detailContainer.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="product-detail-image">
+        <div class="product-detail-info">
+          <h2>${product.icon} ${product.name}</h2>
+          <p><strong>Brand:</strong> ${product.brand}</p>
+          <p><strong>Price:</strong> ₹${product.price}</p>
+          <p><strong>Rating:</strong> ${"★".repeat(Math.floor(product.rating))}</p>
+          <p><strong>Category:</strong> ${product.category}</p>
+          <button onclick="addToCart(${productId})">Add to Cart</button>
+        </div>
+      `;
+    } else {
+      detailContainer.innerHTML = "<p>Product not found.</p>";
+    }
+
+    function addToCart(id) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push(products[id]);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Product added to cart!");
+    }
+  </script>
+</body>
+</html>
