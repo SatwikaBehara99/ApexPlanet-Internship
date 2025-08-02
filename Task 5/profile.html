@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Profile - SmartStore</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🛒 SmartStore</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html" id="logoutBtn">Logout</a>
+    </nav>
+  </header>
+
+  <main class="profile-container">
+    <h2>👤 Your Profile</h2>
+    <div class="profile-details">
+      <p><strong>Name:</strong> <span id="profileName"></span></p>
+      <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+      <p><strong>Phone:</strong> <span id="profilePhone"></span></p>
+      <p><strong>Gender:</strong> <span id="profileGender"></span></p>
+      <p><strong>Address:</strong> <span id="profileAddress"></span></p>
+    </div>
+  </main>
+
+  <script>
+    // Load profile from localStorage
+    const user = JSON.parse(localStorage.getItem("user")) || {};
+
+    document.getElementById("profileName").textContent = user.name || "Not Available";
+    document.getElementById("profileEmail").textContent = user.email || "Not Available";
+    document.getElementById("profilePhone").textContent = user.phone || "Not Available";
+    document.getElementById("profileGender").textContent = user.gender || "Not Available";
+    document.getElementById("profileAddress").textContent = user.address || "Not Available";
+
+    // Optional logout clear
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("user");
+    });
+  </script>
+
+</body>
+</html>
